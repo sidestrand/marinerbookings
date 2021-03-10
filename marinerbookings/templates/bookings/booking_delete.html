@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<title>{% block extrahead %}Delete booking{% endblock %}</title>
+
+<div class = "row">
+{% block col1 %}
+    <div class = "col-md-3">
+        <div class = "well">
+            <h3>Delete Contact</h3>
+        </div><!--well-->
+    </div><!--col-md-3-->
+{% endblock %}
+{% block col2 %}
+    <div class = "col-md-6" offset=1>
+        <div class = 'alert alert-danger'>
+        <p><strong>Are you sure you want to delete the booking</strong><br>{{ booking }}?</p>
+        </div><!--div alert-->
+        <form action="{% url 'bookings:booking-delete' pk=booking.id %}" method="POST">
+        {% csrf_token %}
+
+        <input class = 'btn btn-primary' type="submit" value="Yes, delete" />
+        <a href="{% url 'bookings:booking' %}" class = 'btn btn-default'>No, cancel</a>
+        </form>
+    </div><!--col-md-6-->
+{% endblock %}
+</div><!--row-->

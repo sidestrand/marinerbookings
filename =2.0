@@ -1,0 +1,6 @@
+Requirement already satisfied: pylint in /home/richard/.virtualenvs/sidestrand21/lib/python3.8/site-packages (0.28.0)
+Requirement already satisfied: logilab-common>=0.53.0 in /home/richard/.virtualenvs/sidestrand21/lib/python3.8/site-packages (from pylint) (1.8.1)
+Requirement already satisfied: logilab-astng>=0.24.3 in /home/richard/.virtualenvs/sidestrand21/lib/python3.8/site-packages (from pylint) (0.24.3)
+Requirement already satisfied: typing-extensions in /home/richard/.virtualenvs/sidestrand21/lib/python3.8/site-packages (from logilab-common>=0.53.0->pylint) (3.7.4.3)
+Requirement already satisfied: mypy-extensions in /home/richard/.virtualenvs/sidestrand21/lib/python3.8/site-packages (from logilab-common>=0.53.0->pylint) (0.4.3)
+Requirement already satisfied: setuptools in /home/richard/.virtualenvs/sidestrand21/lib/python3.8/site-packages (from logilab-common>=0.53.0->pylint) (52.0.0)

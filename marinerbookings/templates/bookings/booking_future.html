@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col-md-3">
+        <div class="card">
+		    <a href="#">Confirmed bookings: <span class="badge">{{ current_bookings }}</span></a>
+            <p></p>
+            {% for booking in bookings:booking_booking_list %}
+                {% if bookings:booking %}
+                    {{ booking.start_date }} - {{ booking.end_date }}
+                    <a href="{% url 'bookings:booking-update' slug
+                    {% if booking.sec_recd == 0 and booking.bkg_source == 0 %}
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    {% endif %}  
+                    <br>{{ booking.guest }}
+                    <a href="{% url 'bookings:booking-update' slug
+                </p>
+                {% endif %}
+            {% endfor %}
+
+
+        </div><!--/card-->
+    </div><!--/col-md-3-->
+{% endblock %}
+{% block col2 %}
+{% include "monitor.html" %}
+{% endblock %}
+</div><!--row-->
+</div><!--container-->
+

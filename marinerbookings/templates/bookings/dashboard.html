@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class = "container">
+    <div class = "card-columns" >
+            <div class="col mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <p><strong>Deposit due</strong></p>
+                </div> <!-- card-header -->
+                <div class="card-body text-primary">
+                    {% if deposit_item %}
+                    {% for object in deposit_item %}
+                    <p>{{ object.guest }}:  {{ object.dep_due }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p class = "text-secondary">No deposit payments due</p>
+                    {% endif %}
+                </div><!-- card-body -->
+            </div><!-- card -->
+            </div><!-- col-mb-4 -->
+            <div class="col mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <p><strong>Balance due</strong></p>
+                </div> <!-- card-header -->
+                <div class="card-body text-primary">
+                    {% if balance_item %}
+                    {% for object in balance_item %}
+                    <p>{{ object.guest }}:  {{ object.bal_due }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p class = "text-secondary" >No balance payments due</p>
+                    {% endif %}
+                </div><!-- card-body -->
+            </div><!-- card -->
+            </div><!-- col-mb-4 -->            
+            <div class="col mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <p><strong>Security deposit due</strong></p>
+                </div> <!-- card-header -->
+                <div class="card-body text-primary">
+                    {% if security_due_item %}
+                    {% for object in security_due_item %}
+                    <p>{{ object.guest }}</p>
+                    {% endfor %}
+                    {% else %}
+                    <p class = "text-secondary" >No security deposits due</p>
+                    {% endif %}<!-- security_due_item -->
+                </div><!-- card-body -->
+            </div><!-- card -->
+            </div><!-- col-mb-4 -->
+            <div class="col mb-4">
+            <div class = "card">
+                <div class = "card-header">
+                    <p><strong>Keys sent</strong></p>
+                </div><!-- card-header -->
+                <div class = "card-body">
+                    <p class = "text-secondary">No keys due for sending</p>
+                </div><!-- card-body -->        
+            </div><!-- card -->
+            </div><!-- col-mb-4 -->            
+            <div class="col mb-4">
+            <div class = "card">
+                <div class = "card-header">
+                    <p><strong>Security deposit returned</strong></p>
+                </div><!-- card-header -->
+                <div class = "card-body">
+                    <p class = "text-secondary">No recent departures</p>
+                </div><!-- card-body -->        
+            </div><!-- card -->
+            </div><!-- col-mb-4 -->            
+            <div class="col mb-4">
+            <div class = "card">
+                <div class = "card-header">
+                    <p><strong>Spare</strong></p>
+                </div><!-- card-header -->
+                <div class = "card-body">
+                    <p class = "text-secondary">Nothing to say</p>
+                </div><!-- card-body -->        
+            </div><!-- card -->
+    </div><!-- row -->
+</div><!-- container -->
+{% endblock %}<!-- block content -->

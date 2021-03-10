@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Deposit due{% endblock %}</title>
+
+{% block content %}
+
+    <div class="card">
+        <h3 class="card-title">Deposit due <span i class="fas fa-pound-sign"></i></span></h3>
+        <div class="card-body">
+{% if bookings:deposit_item %}
+        {% for object in bookings:deposit_item %}
+            <p>{{ object.guest }}:  {{ object.dep_due }}</p>
+            {% endfor %}
+            {% endif %}
+            Ho Ho HO
+        </div><!--card-body-->
+    </div><!--card-default-->
+    
+{% endblock %}

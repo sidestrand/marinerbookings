@@ -1,10 +1,9 @@
-{% load static i18n %}
-<!DOCTYPE html>
+{% load static i18n %}<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}Mariners Loft Bookings{% endblock title %}</title>
+    <title>{% block title %}MarinerBookings{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -35,7 +34,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}">Mariners Loft Booking System</a>
+        <a class="navbar-brand" href="{% url 'home' %}">MarinerBookings</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -44,12 +43,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'bookings:guest-list' %}">Guests</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'bookings:booking-list' %}">Bookings</a>
             </li>
             {% if request.user.is_authenticated %}
               <li class="nav-item">
@@ -85,8 +78,8 @@
       {% endif %}
 
       {% block content %}
-        <p>"Mariner's Loft booking and management site" This text is inherited on other pages!</p>
-      {% endblock %}
+        <p>Booking system for Mariner's Loft holiday rental This text is inherited on other pages!</p>
+      {% endblock content %}
 
     </div> <!-- /container -->
 
@@ -103,13 +96,10 @@
 
       <!-- Your stuff: Third-party javascript libraries go here -->
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
 
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
   </body>
 </html>
-
  

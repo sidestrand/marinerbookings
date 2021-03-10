@@ -1,0 +1,89 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+
+    {% block css %}
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <!-- This file stores project-specific CSS -->
+
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% endblock %}
+
+  </head>
+
+  <body>
+<title>{% block title %}Current bookings{% endblock %}</title>
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        {% block col1 %}
+        <div class="col-md-12">
+    <h3>All bookings</h3>
+        {% if booking_list %}
+            <table class="table table-striped table-bordered">
+                <thead><th style="width: 2%">#</th>
+                    <th style="width: 20%">Guest</th>
+                    <th style="width: 10%">Start</th>
+                    <th style="width: 10%">End</th>
+                    <th style="width: 5%">Adult</th>
+                    <th style="width: 5%">Child</th>
+                    <th style="width: 20%">Notes</th>
+                    <th style="width: 4%">Sec
+                                <th style="width: 4%">Edit</th>
+                    <th style="width: 4%">Del</th>
+                </thead>
+                {% for booking in booking_list %}
+                <td>{{ forloop.counter }}</td> <td>{{ booking.guest}}</td> <td>{{ booking.start_date}}</td> <td>{{ booking.end_date }}</td> 
+                <td>{{ booking.bkd_adult }}</td><td>{{ booking.bkd_child }}</td>
+                <td>{{ booking.booking_notes | linebreaks }}</td>
+                {% if booking.sec_recd != 0 %}
+                <td><span class="fas fa-check">
+                {% elif booking.sec_recd == 0 and booking.bkg_source == 0 %}
+                <td><span class="fas fa-times">
+                {% else %}
+                <td><strong>-</strong></td>
+                {% endif %}
+                <td><a href="{% url 'bookings:update' booking.slug %}"><i class="fas fa-edit"></i></td>
+                <td><a href="{% url 'bookings:list' %}"><span class="fas fa-trash-alt"></td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+        </div><!--/col-md-12-->
+        {% endblock %} <!-- block col1 -->
+        {% endblock %} <!-- block content -->
+    </div><!--row-->
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+      <!-- Bootstrap JS and its dependencies-->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+      <!-- Your stuff: Third-party javascript libraries go here -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    {% endblock javascript %}
+  </body>
+</html>

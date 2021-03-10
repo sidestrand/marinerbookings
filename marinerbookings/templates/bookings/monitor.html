@@ -1,0 +1,20 @@
+{% extends base.html %}
+
+{% block content %}
+<div class="container"</div>
+        <div class="row">
+    <div class="col-md-9">
+        <div class="col-md-3">{% include "dep_due.html" %}</div>
+        <div class="col-md-3">{% includ e "bal_due.html" %}</div>
+        <div class="col-md-3">{% include "security_due.html" %}</div>
+        </div>
+        <div class="row">
+        <div class="col-md-3">{% include "send_keys.html" %}</div>
+        <div class="col-md-3">{% include "return_sec.html" %}</div>
+        <div class="col-md-3"><img src="{{ MEDIA_URL }}bird14.png" class="img-responsive" alt="bird 14"></div>
+        </div><!--row-->
+        </div class="row">
+        <iframe src="https://www.google.com/calendar/embed?src=itc8i5b502t2av2dcqnu9cul7k%40group.calendar.google.com&ctz=Europe/London" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div><!--row-->
+    </div><!--col-md-9-->
+</div><!--container-->

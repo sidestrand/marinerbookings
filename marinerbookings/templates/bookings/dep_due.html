@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load staticfiles %}
+
+{% if bookings:booking_list_all %}
+    <div class="card">
+        <h3 class="card-title">Deposit due<span class="<i class="fas fa-pound-sign"></i>"></span></h3>
+        <div class="card-body">
+        {% for booking in bookings:booking_list_all %}
+        {% if booking.dep_due %}
+            <p>{{ booking.guest }}:  {{ booking.dep_due }}</p>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div><!--card-body-->
+    </div><!--card-default-->
+</html>
