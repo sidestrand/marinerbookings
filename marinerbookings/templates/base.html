@@ -46,10 +46,10 @@
               <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'bookings:guest-list' %}">Guests</a>
+              <a class="nav-link" href="{% url 'bookings:guest_list' %}">Guests</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'bookings:booking-list' %}">Bookings</a>
+              <a class="nav-link" href="{% url 'bookings:booking_list' %}">Bookings</a>
             </li>
             {% if request.user.is_authenticated %}
               <li class="nav-item">
@@ -85,10 +85,32 @@
       {% endif %}
 
       {% block content %}
-        <p>"Mariner's Loft booking and management site" This text is inherited on other pages!</p>
-      {% endblock %}
+	<div class="container">
+		<div class="row">
+		<div class="col-md-5">
+      <div class="alert alert-primary" role="alert">
+		Click below to record a new guest or booking
+		</div>
+		</div><!--/col-md-5-->
+	</div><!--row-->
+		<div class="row">
+		<div class="col-md-3">
+				  <a class="btn btn-primary" 
+					href="{% url 'bookings:guest_add' %}" role="button">
+					New Guest
+				  </a>
+				  <p></p>
+		</div><!--/col-md-3-->
+		<div class="col-md-3">
+				  <a class="btn btn-primary" 
+					href="{% url 'bookings:booking_add' %}" role="button">
+					New Booking
+				  </a>
+		</div><!--/col-md-3-->
+	{% endblock %}
+	</div><!--row-->
+	</div><!--container-->
 
-    </div> <!-- /container -->
 
     {% block modal %}{% endblock modal %}
 

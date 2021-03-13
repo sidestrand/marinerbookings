@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='container'>
+    <div class='row'>
+        <div class="col-md-12">
+                {% if guest_list %}
+                    <h3>All enquiries</h3>
+                        {% for guest in guest_list %}
+                        <p><a href="{% url 'bookings:guest_detail' guest.slug %}">{{ guest }}</a>
+                        <a href="{% url 'bookings:guest_update' guest.slug %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'bookings:guest_update' guest.slug %}"><i class="fas fa-trash-alt"></i></a>
+                        </p>
+                        {% empty %}
+                        <p>
+                        <button type="button" class="btn btn-danger btn-sm" >There are no guests</button>
+                        {% endfor %}
+                {% endif %}
+            </div><!--row-->
+            <div class="row">
+                <p>
+  <a class="btn btn-primary" 
+        href="{% url 'bookings:guest_add' %}" role="button">
+    Add Guest
+  </a>
+  </p>
+        </div><!--col-md-12-->
+    </div><!--/row-->
+</div><!--/container-->
+{% endblock %}

@@ -16,7 +16,7 @@ class GuestCreateForm(forms.ModelForm):
             'guest_email',
             'guest_mobile',
             'guest_land_line',
-            'booking_source'
+            # 'booking_source'
          ]
      
 class GuestUpdateForm(GuestCreateForm):
@@ -38,7 +38,7 @@ class GuestUpdateForm(GuestCreateForm):
         fields = [
             'guest_first_name',
             'guest_last_name',
-            'booking_source',
+            # 'booking_source	',
             'guest_email',
             'guest_mobile',
             'guest_land_line',

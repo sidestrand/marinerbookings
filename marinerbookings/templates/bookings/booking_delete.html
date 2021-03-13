@@ -16,7 +16,7 @@
         <div class = 'alert alert-danger'>
         <p><strong>Are you sure you want to delete the booking</strong><br>{{ booking }}?</p>
         </div><!--div alert-->
-        <form action="{% url 'bookings:booking-delete' pk=booking.id %}" method="POST">
+        <form action="{% url 'bookings:booking_delete' pk=booking.id %}" method="POST">
         {% csrf_token %}
 
         <input class = 'btn btn-primary' type="submit" value="Yes, delete" />

@@ -7,8 +7,8 @@
     <div class="card">
         <h3 class="card-title">Deposit due <span i class="fas fa-pound-sign"></i></span></h3>
         <div class="card-body">
-{% if bookings:deposit_item %}
-        {% for object in bookings:deposit_item %}
+{% if deposit_item %}
+        {% for object in deposit_item %}
             <p>{{ object.guest }}:  {{ object.dep_due }}</p>
             {% endfor %}
             {% endif %}

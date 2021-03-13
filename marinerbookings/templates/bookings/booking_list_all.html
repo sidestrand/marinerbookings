@@ -1,20 +1,21 @@
 {% extends "base.html" %} 
-{% block content %}
+
+{% block col1 %}
 <div class="container">
     <div class="row">
     <div class="col-md-3">
         <div class="card">
 		    <a href="#">Confirmed bookings: <span class="badge">{{ current_bookings }}</span></a>
             <p></p>
-            {% for booking in bookings:booking_booking_list %}
-                {% if bookings:booking %}
+            {% for booking in bookings:booking_list_all %}
+                {% if bookings_booking.current_guest %}
                     {{ booking.start_date }} - {{ booking.end_date }}
-                    <a href="{% url 'bookings:booking_update' slug
-                    {% if booking.sec_recd == 0 and booking.bkg_source == 0 %}
+                    <a href="{% url 'bookings:booking-update' slug
+                    {% if booking.sec_recd == 0 and booking.guest_status == 0 %}
                     <span class="glyphicon glyphicon-warning-sign"></span>
                     {% endif %}  
                     <br>{{ booking.guest }}
-                    <a href="{% url 'bookings:booking_update' slug
+                    <a href="{% url '	bookings:booking-update' slug
                 </p>
                 {% endif %}
             {% endfor %}

@@ -10,25 +10,25 @@ from localflavor.gb.forms import GBCountySelect, GBNationSelect, GBPostcodeField
     
 import datetime
 
-tdy = datetime.date.today()
+tdy = datetime.date.today()	
 td = tdy.isoformat()
 
 def get_populate_from(instance):
     return '%s-%s' % (instance.guest_first_name, instance.guest_last_name)
 
-class Guest(TimeStampedModel):
+class Guest(models.Model):
     
-    class BookingSource(models.TextChoices):
-        UNSPECIFIED = "unspecified", "Unspecified"
-        AIRBNB = "airbnb", "AirBnB"
-        MARINERS = "mariners", "Mariners"
-        FRIENDS = "friends", "Friends"
-        OWNERS = "owners", "Owners" 
+    # class BookingSource(models.TextChoices):
+        # UNSPECIFIED = "unspecified", "Unspecified"
+        # AIRBNB = "airbnb", "AirBnB"
+        # MARINERS = "mariners", "Mariners"
+        # FRIENDS = "friends", "Friends"
+        # OWNERS = "owners", "Owners" 
         
     guest_first_name = models.CharField("Guest first name", max_length=255)
     guest_last_name = models.CharField("Guest last name", max_length=255)
-    booking_source = models.CharField("Booking Source", max_length=20,      
-        choices=BookingSource.choices, default=BookingSource.UNSPECIFIED)
+    # booking_source = models.CharField("Booking Source", max_length=20,      
+        # choices=BookingSource.choices, default=BookingSource.UNSPECIFIED)
     guest_email = models.EmailField('email', blank=True, null=True)
     guest_mobile = models.CharField('Mobile', max_length=20, blank=True, null=True)
     guest_land_line = models.CharField('Landline', max_length=20, blank=True, null=True)

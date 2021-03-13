@@ -31,15 +31,15 @@
                 {% else %}
                 <td><strong>-</strong></td>
                 {% endif %}
-                <td><a href="{% url 'bookings:booking-update' booking.slug %}"><i class="fas fa-edit"></i></td>
-                <td><a href="{% url 'bookings:booking-list' %}"><span class="fas fa-trash-alt"></td>
+                <td><a href="{% url 'bookings:booking_update' booking.slug %}"><i class="fas fa-edit"></i></td>
+                <td><a href="{% url 'bookings:booking_list' %}"><span class="fas fa-trash-alt"></td>
                 </tr>
             {% endfor %}
             </table>
             <div class = 'row'>
                 <div class = 'col-md-4'>                
                 <a class="btn btn-primary" 
-                    href="{% url 'bookings:booking-add' %}" role="button">
+                    href="{% url 'bookings:booking_add' %}" role="button">
                     Add Booking
                 </a>
                 </div><!-- col-md-4 -->

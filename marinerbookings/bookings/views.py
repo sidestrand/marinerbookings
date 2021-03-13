@@ -6,24 +6,28 @@ from django.views.generic import (
     ListView, 
     DetailView, 
     CreateView,
-    UpdateView
+    UpdateView,
+    TemplateView
     )
     
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Family, Booking
+from .models import Family, Booking, Guest
 
 from .forms import GuestCreateForm, GuestUpdateForm, BookingCreateForm, BookingUpdateForm
 
+class LandingView(LoginRequiredMixin, TemplateView):
+	model = Booking
+
 class GuestListView(LoginRequiredMixin, ListView):
-    model = Booking
+    model = Guest
     
 class GuestDetailView(LoginRequiredMixin, DetailView):
-    model = Booking
+    model = Guest
 
 class GuestCreateView(LoginRequiredMixin, CreateView):
-    model = Booking
-    form_class = BookingCreateForm
+    model = Guest
+    form_class = GuestCreateForm
     
     def get_absolute_url(self):
         """Return absolute URL to the Guest Detail page."""
@@ -36,8 +40,8 @@ class GuestCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class GuestUpdateView(LoginRequiredMixin, UpdateView):
-    model = Booking
-    form_class = BookingUpdateForm
+    model = Guest
+    form_class = GuestUpdateForm
     
     def get_absolute_url(self):
         """Return absolute URL to the Guest Detail page."""
@@ -78,3 +82,49 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
     form_class = BookingUpdateForm
 
     action = "Update"
+    
+class BookingDashboardView(LoginRequiredMixin, ListView):
+	template_name = "bookings/dashboard.html"
+	model = Booking
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['deposit_item'] = Booking.booking_deposit.all()
+		context['balance_item'] = Booking.booking_balance.all()
+		context['security_due_item'] = Booking.booking_sec_recd.all()
+		context['keys_sent_item'] = Booking.booking_keys_sent.all()
+		context['security_returned_item'] = Booking.booking_sec_returned.all()
+		return context
+    
+class BookingDepositDueView(LoginRequiredMixin, ListView):
+    queryset = Booking.booking_deposit.all()
+    
+class BookingBalanceDueView(LoginRequiredMixin, ListView):
+    queryset = Booking.booking_balance.all()
+    
+class BookingSecurityDepRecd(LoginRequiredMixin, ListView):
+    queryset = Booking.booking_sec_recd.all()
+    
+class BookingKeysSent(LoginRequiredMixin, ListView):
+    queryset = Booking.booking_keys_sent.all()
+    
+class BookingSecReturned(LoginRequiredMixin, ListView):
+    queryset = Booking.booking_sec_returned.all()    
+
+class BookingListView(LoginRequiredMixin, ListView):
+    model = Booking
+        
+class BookingFutureView(LoginRequiredMixin, ListView):
+    queryset = Booking.future_bookings.all()
+
+def print_bookings(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="booking_list.pdf"'
+
+    buffer = io.BytesIO()
+
+    report = BookingListPDF(buffer, 'A4')
+    pdf_list = report.print_bookings()
+
+    response.write(pdf_list)
+    return response

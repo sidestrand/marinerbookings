@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+<div class="container">
+    <div class="row">
+    {% block content %}
+    <div class="col-md-3">
+    <div class="card" style="width: 18rem;">
+    <div class="card-header">
+        <p><strong>{{ guest }}</strong></p>
+    </div> <!-- card-header -->
+    <div class="card-body">
+        <address>
+        <p>{{ guest.address }} <br> {{ guest.city }} <br> {{ guest.post_code }} </p>
+        </address>        
+        <p>{{ guest.guest_email }}</p>
+        <p>{{ guest.guest_mobile }}</p>
+        <p>{{ guest.guest_landline }}</p>
+        <a href="{% url 'bookings:guest_update' guest.slug %}" class="card-link">Update</a></a>
+    </div><!--/card-body -->
+    </div><!--/card-->
+    </div><!--/col-md-3-->
+    {% endblock %}
+    </div><!-- row -->
+</div><!-- container -->

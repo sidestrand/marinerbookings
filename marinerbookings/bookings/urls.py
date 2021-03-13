@@ -7,49 +7,49 @@ app_name = "bookings"
 urlpatterns = [
     path(
         route='',
-        view=views.BookingListView.as_view(),
-        name='booking-list'
+        view=views.LandingView.as_view(template_name = "bookings/index.html"),
+        name='index'
     ),
 
     path(
         route='booking-add/',
         view=views.BookingCreateView.as_view(),
-        name='booking-add'
+        name='booking_add'
 ),
     path(
         route='booking-detail/<slug:slug>/',
         view=views.BookingDetailView.as_view(),
-        name='booking-detail'
+        name='booking_detail'
 ),
 
     path(
         route='<slug:slug>/booking-update/',
         view=views.BookingUpdateView.as_view(),
-        name='booking-update'
+        name='booking_update'
     
 ),
     
     path(
         route='guests',
         view=views.GuestListView.as_view(),
-        name='guest-list'
+        name='guest_list'
     ),
     
     path(
         route='guest-add/',
         view=views.GuestCreateView.as_view(),
-        name='guest-add'
+        name='guest_add'
 ),
     path(
         route='guest-detail/<slug:slug>/',
         view=views.GuestDetailView.as_view(),
-        name='guest-detail'
+        name='guest_detail'
 ),
 
     path(
         route='<slug:slug>/guest-update/',
         view=views.GuestUpdateView.as_view(),
-        name='guest-update'
+        name='guest_update'
     
 ),
 
@@ -57,6 +57,12 @@ urlpatterns = [
         route='dashboard/',
         view=views.BookingDashboardView.as_view(),
         name='dashboard_list'
+),
+
+ path(
+        route='bookings/',
+        view=views.BookingListView.as_view(),
+        name='booking_list'
 ),
  
     path(
@@ -94,6 +100,13 @@ urlpatterns = [
         template_name='booking_future.html'
         ),
         name='future'
+        ),
+
+    path(
+        route='sec_retn/',
+        view=views.BookingListView.as_view(
+        template_name='security returned.html'),
+        name='sec_retn'
         ),
 
     path(
