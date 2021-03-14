@@ -83,6 +83,8 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    'bootstrap_datepicker_plus',
+    
 ]
 
 LOCAL_APPS = [

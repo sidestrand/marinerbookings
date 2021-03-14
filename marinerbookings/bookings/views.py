@@ -17,7 +17,7 @@ from .models import Family, Booking, Guest
 from .forms import GuestCreateForm, GuestUpdateForm, BookingCreateForm, BookingUpdateForm
 
 class LandingView(LoginRequiredMixin, TemplateView):
-	model = Booking
+    model = Booking
 
 class GuestListView(LoginRequiredMixin, ListView):
     model = Guest
@@ -61,6 +61,11 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
     model = Booking
     form_class = BookingCreateForm
 
+    def get_form(self):
+         form = super().get_form()
+         form.fields['start_date'].widget = DateTimePickerInput()
+         return form
+
     def get_absolute_url(self):
         """Return absolute URL to the Booking Detail page."""
         return reverse(
@@ -84,16 +89,16 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
     action = "Update"
     
 class BookingDashboardView(LoginRequiredMixin, ListView):
-	template_name = "bookings/dashboard.html"
-	model = Booking
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['deposit_item'] = Booking.booking_deposit.all()
-		context['balance_item'] = Booking.booking_balance.all()
-		context['security_due_item'] = Booking.booking_sec_recd.all()
-		context['keys_sent_item'] = Booking.booking_keys_sent.all()
-		context['security_returned_item'] = Booking.booking_sec_returned.all()
-		return context
+    template_name = "bookings/dashboard.html"
+    model = Booking
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['deposit_item'] = Booking.booking_deposit.all()
+        context['balance_item'] = Booking.booking_balance.all()
+        context['security_due_item'] = Booking.booking_sec_recd.all()
+        context['keys_sent_item'] = Booking.booking_keys_sent.all()
+        context['security_returned_item'] = Booking.booking_sec_returned.all()
+        return context
     
 class BookingDepositDueView(LoginRequiredMixin, ListView):
     queryset = Booking.booking_deposit.all()

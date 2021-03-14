@@ -5,6 +5,7 @@ from localflavor.gb.forms import GBPostcodeField, GBCountySelect
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, Button, Row, Field, Fieldset
 from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
+from bootstrap_datepicker_plus import DatePickerInput
 
 class GuestCreateForm(forms.ModelForm):
     
@@ -38,7 +39,7 @@ class GuestUpdateForm(GuestCreateForm):
         fields = [
             'guest_first_name',
             'guest_last_name',
-            # 'booking_source	',
+            # 'booking_source   ',
             'guest_email',
             'guest_mobile',
             'guest_land_line',
@@ -60,6 +61,10 @@ class BookingCreateForm(forms.ModelForm):
             'start_date',
             'end_date',
             ]
+        widgets = {
+            'start_date':DatePickerInput().start_of('arrival day'),
+            'end_date':DatePickerInput().end_of('departure day'),
+        }
      
 class BookingUpdateForm(BookingCreateForm):
     
