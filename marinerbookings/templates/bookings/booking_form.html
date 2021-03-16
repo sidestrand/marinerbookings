@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{{  form.media }}
+
+{{ forms.media }}
 
 {% block title %}{{ view.action|default:"Add" }} Booking{% endblock title %}
 

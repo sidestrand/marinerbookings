@@ -83,8 +83,6 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    'bootstrap_datepicker_plus',
-    
 ]
 
 LOCAL_APPS = [
@@ -216,6 +214,11 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# jQuery for Bootstrap4 needs to be enabled for django-bootstrap-datepicker to work
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 
 # FIXTURES
 # ------------------------------------------------------------------------------

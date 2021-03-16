@@ -61,11 +61,6 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
     model = Booking
     form_class = BookingCreateForm
 
-    def get_form(self):
-         form = super().get_form()
-         form.fields['start_date'].widget = DateTimePickerInput()
-         return form
-
     def get_absolute_url(self):
         """Return absolute URL to the Booking Detail page."""
         return reverse(
@@ -77,14 +72,14 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class BookingUpdateView(LoginRequiredMixin, UpdateView):
-
+    model = Booking
+    form_class = BookingUpdateForm
+ 
     def get_absolute_url(self):
         """Return absolute URL to the Booking Detail page."""
         return reverse(
             'booking-detail', kwargs={"slug": self.slug}
         )
-    model = Booking
-    form_class = BookingUpdateForm
 
     action = "Update"
     
