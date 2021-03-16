@@ -4,8 +4,8 @@ from .models import Booking, Guest
 
 from localflavor.gb.forms import GBPostcodeField, GBCountySelect
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, Button, Row, Field, Fieldset
-from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
+from crispy_forms.layout import Layout, Div, Submit, Button, Row, Field, Fieldset, HTML
+from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText, InlineRadios
 
 common_guests = Layout(
     Div(
@@ -149,6 +149,7 @@ class BookingCreateForm(forms.ModelForm):
         self.helper.error_text_inline = True
         self.helper.layout = Layout(
             common_new_enq,
+			InlineRadios('guest_status'),
             FormActions(
                 Submit('submit', "Save changes"),
                 Button('cancel', "Cancel", onclick='history.go(-1);'),
