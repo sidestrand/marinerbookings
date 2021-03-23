@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<link href="{% static 'admin/css/font.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<h1> <u> DJANGO HANDLING EMAILS </u> </h1>
+<div class="myDiv" style = "max-width:470px;">
+<form method =  'POST'>
+{{ email.as_p }}
+{% csrf_token %}
+<input type="submit" class="btn btn-primary" value="submit" style="text-align:center">
+</form>
+</div>
+</body>
+</html>

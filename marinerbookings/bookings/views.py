@@ -12,6 +12,8 @@ from django.views.generic import (
     
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.core.mail import send_mail
+
 from .models import Family, Booking, Guest
 
 from .forms import GuestCreateForm, GuestUpdateForm, BookingCreateForm, BookingUpdateForm
@@ -43,10 +45,18 @@ class GuestUpdateView(LoginRequiredMixin, UpdateView):
     model = Guest
     form_class = GuestUpdateForm
     
+    def form_valid(self, form):
+        # from_email = 'owners@marinersaldeburgh.com'
+        # recipient_list = ['richard@darton-moore.co.uk',] # put your real email here
+        # subject = 'Subject text'
+        # message = 'This is the body of the email.'
+        # send_mail(subject, message, from_email, recipient_list)
+        return super(GuestUpdateView, self).form_valid(form)
+    
     def get_absolute_url(self):
         """Return absolute URL to the Guest Detail page."""
         return reverse(
-            'guest-detail', kwargs={"slug": self.slug}
+            'guest_detail', kwargs={"slug": self.slug}
         )
 
     action = "Update"

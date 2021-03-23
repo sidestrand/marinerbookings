@@ -37,6 +37,7 @@ class Guest(models.Model):
     county = models.CharField(max_length=30, blank=True)
     post_code = models.CharField(max_length=8, blank=True)
     nation = models.CharField(max_length=20, blank=True)
+    num_child = models.IntegerField(default=0)
     slug = AutoSlugField(unique=True, populate_from=get_populate_from)
     
     @property
@@ -50,7 +51,7 @@ class Guest(models.Model):
     def get_absolute_url(self):
         """Return absolute URL to the Guest Detail page."""
         return reverse(
-            'guest-detail', kwargs={"slug": self.slug}
+            'guest_detail', kwargs={"slug": self.slug}
         )
 
     creator = models.ForeignKey(
@@ -156,6 +157,11 @@ class Booking(models.Model):
     booking_sec_recd = BookingSecurityDepRecd()
     booking_keys_sent = BookingKeysSent()
     booking_sec_returned = BookingSecReturned()
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.SET_NULL
+    )
     
     @property
     def have_returned_sec(self):
@@ -197,6 +203,12 @@ class Booking(models.Model):
         # future_bookings = (self.guest)
         # if self.end_date >= datetime.date.today():
             # return '%s - %s  %s' % (self.start_date, self.end_date, self.guest)
+
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.SET_NULL
+    )
          
     @property
     def booking_details(self):
@@ -211,10 +223,4 @@ class Booking(models.Model):
         return reverse(
             'detail', kwargs={"slug": self.slug}
         )         
-
-    creator = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        on_delete=models.SET_NULL
-    )
     

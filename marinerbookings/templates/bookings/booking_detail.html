@@ -1,41 +1,41 @@
 {% extends "base.html" %}
 
-{% block title %}Bookings: {{ bookings:booking.guest }}{% endblock title %}
+{% block title %}Bookings: {{ booking.guest }}{% endblock title %}
 
 {% block content %}
 
-<h2>{{ bookings:booking.bookings:booking_detail }}</h2>
+<h2>{{ booking.booking_detail }}</h2>
 
-{% if bookings:booking.start_date %}
-    <p>{{ bookings:booking.start_date }}</p>
+{% if booking.start_date %}
+    <p>{{ booking.start_date }}</p>
 {% endif %}
 
-{% if bookings:booking.end_date %}
-    <p>{{ bookings:booking.end_date }}</p>
+{% if booking.end_date %}
+    <p>{{ booking.end_date }}</p>
 {% endif %}
 
-{% if bookings:booking.guest_one %}
-    <p>{{ bookings:booking.guest_one }}</p>
+{% if booking.guest_one %}
+    <p>{{ booking.guest_one }}</p>
 {% endif %}
 
-{% if bookings:booking.guest_two %}
-    <p>{{ bookings:booking.guest_two }}</p>
+{% if booking.guest_two %}
+    <p>{{ booking.guest_two }}</p>
 {% endif %}
 
 <hr/>
 
 <h3>Submitted by 
   <a href="{% url 'users:detail' booking.creator.username %}">
-    {{ bookings:booking.creator.username }}
+    {{ booking.creator.username }}
   </a>
 </h3>
-{% if bookings:booking.creator.name %}
-    <p>{{ bookings:booking.creator.name }}</p>
+{% if booking.creator.name %}
+    <p>{{ booking.creator.name }}</p>
 {% endif %}
 
 <p>
   <a class="btn btn-primary" 
-      href="{% url 'bookings:booking_update' booking.slug %}"
+      href="{% url 'booking_update' booking.slug %}"
       role="button">
           Update
       </a>

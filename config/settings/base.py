@@ -241,7 +241,13 @@ X_FRAME_OPTIONS = "DENY"
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = env(
     "DJANGO_EMAIL_BACKEND",
-    default="django.core.mail.backends.smtp.EmailBackend",
+    default="django.core.mail.backends.console.EmailBackend",
+    # EMAIL_HOST = 'localhost',
+	# EMAIL_PORT = 8001,
+	# EMAIL_HOST_USER = '',
+	# EMAIL_HOST_PASSWORD =  '',
+	# EMAIL_USE_TLS = True,
+	# DEFAULT_FROM_EMAIL = 'mystay@marinersaldeburgh.com'
 )
 # https://docs.djangoproject.com/en/2.2/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5

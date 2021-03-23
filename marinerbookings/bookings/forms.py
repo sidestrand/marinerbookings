@@ -1,5 +1,6 @@
 import datetime
 from django import forms
+from django.core.mail import send_mail
 from .models import Booking, Guest
 
 from localflavor.gb.forms import GBPostcodeField, GBCountySelect
@@ -74,22 +75,22 @@ common_new_enq = Layout(
 
 
 class GuestCreateForm(forms.ModelForm):
-    
+
     class Meta:
         model = Guest
         fields = [
-            'guest_first_name', 
+            'guest_first_name',
             'guest_last_name',
             'guest_email',
             'guest_mobile',
             'guest_land_line',
             # 'booking_source'
          ]
-     
+
 class GuestUpdateForm(GuestCreateForm):
-    
+
     post_code = GBPostcodeField()
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # self.fields['guest_mobile']
@@ -98,7 +99,7 @@ class GuestUpdateForm(GuestCreateForm):
         self.fields['city']
         self.fields['county']
         self.fields['post_code']
-        
+
     class Meta(GuestCreateForm.Meta):
         widgets = { 'county': GBCountySelect()}
         # show all the fields!
@@ -114,28 +115,28 @@ class GuestUpdateForm(GuestCreateForm):
             'county',
             'post_code',
             'nation',
-        ]     
+        ]
 
 class BookingCreateForm(forms.ModelForm):
-    
+
     ack_date = forms.DateField(
-        widget=forms.TextInput(     
-            attrs={'type': 'date'} 
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
         )
     )
-    
+
     start_date = forms.DateField(
-        widget=forms.TextInput(     
-            attrs={'type': 'date'} 
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
         )
     )
-        
+
     end_date = forms.DateField(
-        widget=forms.TextInput(     
-            attrs={'type': 'date'} 
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
         )
     )
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -149,13 +150,13 @@ class BookingCreateForm(forms.ModelForm):
         self.helper.error_text_inline = True
         self.helper.layout = Layout(
             common_new_enq,
-			InlineRadios('guest_status'),
+            InlineRadios('guest_status'),
             FormActions(
                 Submit('submit', "Save changes"),
                 Button('cancel', "Cancel", onclick='history.go(-1);'),
                 )
             )
-    
+
     class Meta:
         model = Booking
         fields = [
@@ -166,33 +167,33 @@ class BookingCreateForm(forms.ModelForm):
             'end_date',
             ]
 
-     
+
 class BookingUpdateForm(BookingCreateForm):
-    
+
     dep_recd = forms.DateField(
-        widget=forms.TextInput(     
-            attrs={'type': 'date'} 
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
         )
     )
-    
+
     bal_recd = forms.DateField(
-        widget=forms.TextInput(     
-            attrs={'type': 'date'} 
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
         )
     )
-        
+
     keys_sent = forms.DateField(
-        widget=forms.TextInput(     
-            attrs={'type': 'date'} 
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
         )
     )
-        
+
     sec_retn = forms.DateField(
-        widget=forms.TextInput(     
-            attrs={'type': 'date'} 
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
         )
     )
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['guest_one']
@@ -208,7 +209,7 @@ class BookingUpdateForm(BookingCreateForm):
         self.fields['booking_notes']
         self.fields['bkd_adult']
         self.fields['bkd_child']
-        
+
         def __init__(self, *args, **kwargs):
             super(BookingForm, self).__init__(*args, **kwargs)
 
@@ -229,7 +230,7 @@ class BookingUpdateForm(BookingCreateForm):
                     )
                 )
 
-        
+
     class Meta(BookingCreateForm.Meta):
         # show all the fields!
         fields = [
@@ -252,4 +253,4 @@ class BookingUpdateForm(BookingCreateForm):
             'guest_one',
             'guest_two',
             'guest_three',
-            ]     
+            ]
