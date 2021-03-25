@@ -34,7 +34,7 @@ class GuestCreateView(LoginRequiredMixin, CreateView):
     def get_absolute_url(self):
         """Return absolute URL to the Guest Detail page."""
         return reverse(
-            'guest-detail', kwargs={"slug": self.slug}
+            'guest_detail', kwargs={"slug": self.slug}
         )
 
     def form_valid(self, form):
@@ -74,7 +74,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
     def get_absolute_url(self):
         """Return absolute URL to the Booking Detail page."""
         return reverse(
-            'booking-detail', kwargs={"slug": self.slug}
+            'booking_detail', kwargs={"slug": self.slug}
         )
         
     def form_valid(self, form):
@@ -88,7 +88,7 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
     def get_absolute_url(self):
         """Return absolute URL to the Booking Detail page."""
         return reverse(
-            'booking-detail', kwargs={"slug": self.slug}
+            'booking_detail', kwargs={"slug": self.slug}
         )
 
     action = "Update"

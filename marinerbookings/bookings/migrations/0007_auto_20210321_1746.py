@@ -12,28 +12,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='guest',
-            name='booking_source',
-        ),
-        migrations.RemoveField(
-            model_name='guest',
-            name='created',
-        ),
-        migrations.RemoveField(
-            model_name='guest',
-            name='modified',
-        ),
-        migrations.AddField(
-            model_name='guest',
-            name='num_child',
-            field=models.IntegerField(default=0),
-        ),
-        migrations.AlterField(
-            model_name='booking',
-            name='booking_status',
-            field=models.IntegerField(choices=[(0, 'Enquiry'), (1, 'Acknowledged'), (2, 'Deposit Received'), (3, 'Balance Received'), (4, 'Keys Sent'), (5, 'Stay Complete')], default=3, verbose_name='Status'),
-        ),
         migrations.AlterField(
             model_name='guest',
             name='slug',
