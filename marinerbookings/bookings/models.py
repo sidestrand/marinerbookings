@@ -30,7 +30,7 @@ class Guest(models.Model):
 
     @property
     def guest_full_name(self):
-        "Returns the person's full name."
+        """Returns the person's full name."""
         return '%s %s' % (self.guest_first_name, self.guest_last_name)
 
     def __str__(self):
@@ -207,7 +207,7 @@ class Booking(models.Model):
 
     @property
     def booking_details(self):
-        "Returns the guest name and booking dates."
+        """Returns the guest name and booking dates."""
         return '%s:  %s - %s' % (self.guest, self.start_date, self.ack_date)
 
     def __str__(self):
